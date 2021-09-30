@@ -15,6 +15,7 @@
     "gulp-autoprefixer": "^8.0.0",
     "gulp-clean-css": "^4.3.0",
     "gulp-concat": "^2.6.1",
+    "gulp-gh-pages": "^0.5.4",
     "gulp-less": "^5.0.0",
     "gulp-obfuscate": "^0.2.9",
     "gulp-pug": "^5.0.0",

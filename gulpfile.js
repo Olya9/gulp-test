@@ -8,6 +8,7 @@ const obfuscate = require("gulp-obfuscate");
 const autoprefixer = require("gulp-autoprefixer");
 const cleancss = require("gulp-clean-css");
 const pug = require("gulp-pug");
+const ghPages = require('gulp-gh-pages');
 
 function browsersync() {
   browserSync.init({
@@ -15,6 +16,11 @@ function browsersync() {
     notify: false,
     online: true,
   });
+}
+
+function deploy() {
+  return src('./dist/**/*')
+    .pipe(ghPages());
 }
 
 function pug2html() {
@@ -63,6 +69,7 @@ exports.browsersync = browsersync;
 exports.scripts = scripts;
 exports.styles = styles;
 exports.pug2html = pug2html;
-exports.build = series(cleandist, pug2html, styles, scripts, buildcopy);
+exports.deploy = deploy;
+exports.build = series(cleandist, pug2html, styles, scripts, buildcopy, deploy);
 
 exports.default = parallel(pug2html, styles, scripts, browsersync, startwatch);
